@@ -240,44 +240,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const answer = item.querySelector('.faq-answer');
-        const icon = item.querySelector('.faq-icon');
-
-        // Set initial state
-        if (item.classList.contains('active')) {
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            icon.textContent = '-';
-        } else {
-            answer.style.maxHeight = null;
-            icon.textContent = '+';
-        }
-
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            const open = document.querySelector('.faq-item.active');
-
-            if (open && open !== item) {
-                open.classList.remove('active');
-                open.querySelector('.faq-icon').textContent = '+';
-                open.querySelector('.faq-answer').style.maxHeight = null;
-            }
-
-            item.classList.toggle('active');
-
-            if (item.classList.contains('active')) {
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                icon.textContent = '-';
-            } else {
-                answer.style.maxHeight = null;
-                icon.textContent = '+';
-            }
-        });
-    });
-
-
     const counters = document.querySelectorAll(".counter .count");
 
     const animateCounter = (el) => {
@@ -335,4 +297,43 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+        const question = item.querySelector('.faq-question');
+
+        if (!answer || !icon || !question) return;
+
+        if (item.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.textContent = '-';
+        } else {
+            answer.style.maxHeight = null;
+            icon.textContent = '+';
+        }
+
+        question.addEventListener('click', () => {
+            const open = document.querySelector('.faq-item.active');
+
+            if (open && open !== item) {
+                open.classList.remove('active');
+                open.querySelector('.faq-icon').textContent = '+';
+                open.querySelector('.faq-answer').style.maxHeight = null;
+            }
+
+            item.classList.toggle('active');
+
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.textContent = '-';
+            } else {
+                answer.style.maxHeight = null;
+                icon.textContent = '+';
+            }
+        });
+    });
 });
