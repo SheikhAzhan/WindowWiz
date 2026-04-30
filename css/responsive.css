@@ -12,6 +12,9 @@
     }
 }
 @media (max-width: 991px) {
+    #home-1{
+        background: url(/images/bg-1-mob.jpeg) top center / cover no-repeat scroll;
+    }
     .cta-section{
         width: 90%;
     }
